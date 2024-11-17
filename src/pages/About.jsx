@@ -1,23 +1,42 @@
-
-import {  skills, experiences } from "../constants";
+import { skills, experiences } from "../constants";
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import Fly from "../models/fly2";
+import Loader from "../components/Loader";
+import CTA from "../components/CTA";
 
 const About = () => {
   return (
-    <section className='max-container'>
+    
+    <section>
+      {/* Butterfly Animation */}
+      <div className="absolute top-0 left-0 w-full h-[500px]">
+    <Canvas className="w-full h-full">
+      <Suspense fallback={<Loader />}>
+        <ambientLight intensity={1} />
+        <directionalLight position={[1, 2, 3]} intensity={1} />
+        <Fly />
+      </Suspense>
+    </Canvas>
+</div>
+      {/* Main Content */}
+      <section className="max-container realtive">
       <h1 className="head-text">
-        Hello, <br></br> I'm <span className='purple-gradient_text font-semibold
-        drop-shadow'>
-          Ritika Dawadi</span></h1>
+        Hello, <br /> I'm{" "}
+        <span className='purple-gradient_text font-semibold drop-shadow'>
+          Ritika Dawadi
+        </span>
+      </h1>
+      
+      <div className='mt-5 flex flex-col gap-3 text-slate-500'>
+        <p>
+          Highly motivated junior undergraduate student pursuing a degree in Computer Science with a minor in Bioinformatics. I bring a strong foundation in technical skills, complemented by hands-on project experience and proven leadership in both academic and professional environments. Passionate about computational biology, front-end, and data analysis, I thrive at the intersection of technology and life sciences.
+          <br />
+          Beyond academics, I enjoy exploring new ideas through reading, expressing creativity through painting, and deepening my understanding of the world through data-driven insights.
+        </p>
+      </div>
 
-          <div className='mt-5 flex flex-col gap-3 text-slate-500'>
-            <p>
-            Highly motivated junior undergraduate student pursuing a degree in Computer Science with a minor in Bioinformatics. I bring a strong foundation in technical skills, complemented by hands-on project experience and proven leadership in both academic and professional environments. Passionate about computational biology, front-end, and data analysis, I thrive at the intersection of technology and life sciences. 
-            <br></br>
-            Beyond academics, I enjoy exploring new ideas through reading, expressing creativity through painting, and deepening my understanding of the world through data-driven insights.
-            </p>
-          </div>
-
-          <div className='py-10 flex flex-col'>
+      <div className='py-10 flex flex-col'>
         <h3 className='subhead-text'>A Glimpse of my Skills</h3>
         <div className='mt-16 flex flex-wrap gap-12'>
           {skills.map((skill) => (
@@ -36,68 +55,50 @@ const About = () => {
       </div>
 
       <div className='py-16'>
-        <h3 className='subhead-text'>Work Experience.</h3>
+        <h3 className='subhead-text'>Work Experience</h3>
         <div className='mt-5 flex flex-col gap-3 text-slate-500'>
           <p>
-            I've worked with all sorts of companies, leveling up my skills and
-            teaming up with smart people. Here's the rundown:
+            Here's an overview of my professional journey, with experiences that have shaped my skills and growth:
           </p>
         </div>
 
-        <div className='mt-12 flex'>
-          <VerticalTimeline>
-            {experiences.map((experience, index) => (
-              <VerticalTimelineElement
-                key={experience.company_name}
-                date={experience.date}
-                iconStyle={{ background: experience.iconBg }}
-                icon={
-                  <div className='flex justify-center items-center w-full h-full'>
-                    <img
-                      src={experience.icon}
-                      alt={experience.company_name}
-                      className='w-[60%] h-[60%] object-contain'
-                    />
-                  </div>
-                }
-                contentStyle={{
-                  borderBottom: "8px",
-                  borderStyle: "solid",
-                  borderBottomColor: experience.iconBg,
-                  boxShadow: "none",
-                }}
-              >
-                <div>
-                  <h3 className='text-black text-xl font-poppins font-semibold'>
-                    {experience.title}
-                  </h3>
-                  <p
-                    className='text-black-500 font-medium text-base'
-                    style={{ margin: 0 }}
-                  >
-                    {experience.company_name}
-                  </p>
+        {/* Custom Timeline */}
+        <div className='timeline'>
+          {experiences.map((experience, index) => (
+            <div key={experience.company_name} className='timeline-item'>
+              <div className='timeline-content'>
+                <div
+                  className='timeline-icon'
+                  style={{ background: experience.iconBg }}
+                >
+                  <img
+                    src={experience.icon}
+                    alt={experience.company_name}
+                    className='w-8 h-8 object-contain'
+                  />
                 </div>
-
-                <ul className='my-5 list-disc ml-5 space-y-2'>
-                  {experience.points.map((point, index) => (
-                    <li
-                      key={`experience-point-${index}`}
-                      className='text-black-500/50 font-normal pl-1 text-sm'
-                    >
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </VerticalTimelineElement>
-            ))}
-          </VerticalTimeline>
+                <div className='timeline-details'>
+                  <h3 className='text-lg font-semibold'>{experience.title}</h3>
+                  <p className='text-sm text-gray-500'>{experience.company_name}</p>
+                  <p className='text-xs text-gray-400'>{experience.date}</p>
+                  <ul className='mt-3 list-disc ml-5 space-y-2 text-sm text-gray-700'>
+                    {experience.points.map((point, index) => (
+                      <li key={index}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      
-    </section>
-  )
-}
+     
+          <CTA />
 
-export default About
+            </section>
+    </section>
+  );
+};
+
+export default About;

@@ -181,3 +181,80 @@ body:has(.card[data-color="green"]:hover) {
   box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
     0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
 }
+
+
+.timeline {
+  position: relative;
+  margin-top: 2rem;
+  padding-left: 1rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0.5rem; /* Adjust to align with padding-left */
+  width: 2px;
+  background-color: #ebebee; /* Purple line */
+  box-shadow: 0 0 10px 2px #bab4d4; /* Purple shadow */
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -1.4rem;
+  top: 0.5rem;
+  width: 3rem; 
+  height: 3rem; 
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2b77e7; /* Blue background */
+  box-shadow: 0 0 8px 2px rgba(43, 119, 231, 0.4); /* Subtle glow for emphasis */
+}
+
+.timeline-icon img {
+  width: 98%; /* Resize image within the circle */
+  height: 98%; /* Ensure it's proportional */
+  object-fit: cover; /* Keep the aspect ratio */
+  border-radius: 50%; /* Optional, in case the image isn't circular */
+}
+
+
+.timeline-content {
+  margin-left: 2.5rem;
+  padding: 1rem;
+  background: #ffffff;
+  border: 1px solid #d5dae1;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.role-card {
+  background-color: #fff; /* White background */
+  border: 0.2px solid #d5dae1; /* Light purple border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+  padding: 1.5rem; /* Internal spacing */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.role-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.role-card h4 {
+  margin-bottom: 0.5rem; /* Space between title and date */
+}
+
+.role-card p {
+  margin: 0.3rem 0; /* Adjust spacing between paragraphs */
+}

@@ -7,5 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     include: ['@react-three/drei', '@react-spring/shared', '@react-spring/three'],
   },
-  assetsInclude: ['**/*.glb'], // Include .glb files as assets
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.glb'], 
 });
