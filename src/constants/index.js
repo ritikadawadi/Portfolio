@@ -196,6 +196,10 @@ export const leadershipRoles = [
         date: "August 2023 - Present",
     },
     {
+        title: "International Collegiate Programming Contest (ICPC) Participant",
+        date:"2022, 2023, 2024"
+    },
+    {
         title: "Secretary of Diversity and Inclusion, SGA",
         date: "September 2022 - May 2023",
     },
